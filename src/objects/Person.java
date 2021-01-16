@@ -8,8 +8,10 @@ public class Person {
     Map <String, String> usefulData;
     Set <String> rawData;
     Set <String> tags;
+    int id;
 
     // Constructors: construct maps for data, add initial data (name, birthday)
+    // Id: supposed to be assigned by Database
     public Person() {
         usefulData = new HashMap<>();
         rawData = new HashSet<>();
@@ -29,6 +31,10 @@ public class Person {
         usefulData.put("bd", birthday);
     }
 
+    public void setId(int newId) {
+        id = newId;
+    }
+
     public void addRawData(String data) {
         rawData.add(data);
     }
@@ -37,6 +43,12 @@ public class Person {
         tags.add(tag);
     }
 
+    public String getData(String key) {
+        if(usefulData.containsKey(key)) {
+            return usefulData.get(key);
+        }
+        return "";
+    }
     // Checks if rawData contains an element of a given list. If so, adds a given tag.
     public void addTagFromRawData(List<String> rawTags, String tag) {
         for(String oldTag : rawTags) {
@@ -48,5 +60,13 @@ public class Person {
 
     public boolean hasTag(String tag) {
         return tags.contains(tag);
+    }
+
+    public boolean hasData(String data) {
+        return usefulData.containsKey(data);
+    }
+
+    public int getId() {
+        return id;
     }
 }

@@ -7,12 +7,15 @@ import java.util.ArrayList;
 
 public class Database implements Iterable<Person> {
     List<Person> people;
+    int lastId;
 
     public Database() {
         people = new ArrayList<>();
     }
 
     public void addPerson(Person person) {
+        lastId += 1;
+        person.setId(lastId);
         people.add(person);
     }
 
@@ -43,4 +46,5 @@ public class Database implements Iterable<Person> {
         }
         return peopleWithTag;
     }
+
 }
