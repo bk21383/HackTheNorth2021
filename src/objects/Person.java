@@ -46,4 +46,7 @@ public class Person {
         }
     }
 
+    public boolean hasTag(String tag) {
+        return tags.contains(tag);
+    }
 }
