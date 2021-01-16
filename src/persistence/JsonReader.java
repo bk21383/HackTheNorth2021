@@ -3,6 +3,9 @@ package persistence;
 // This is adapted from the demo:
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
+import objects.Database;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -19,10 +22,10 @@ public class JsonReader {
     }
 
     // EFFECTS: returns month from this's file. Throws IOException if file not found.
-    public Month read() throws IOException {
+    public Database read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
-        return parseMonth(jsonObject);
+        return parseDatabase(jsonObject);
     }
 
     // EFFECTS: reads source file as string and returns it
@@ -37,15 +40,18 @@ public class JsonReader {
     }
 
     // returns Month from jsonObject
-    private Month parseMonth(JSONObject jsonObject) {
+    private Database parseDatabase(JSONObject jsonObject) {
+        /*
         int month = jsonObject.getInt("month");
         int year = jsonObject.getInt("year");
         Month m = new Month(month, year);
         JSONObject itemsJson = jsonObject.getJSONObject("monthItems");
         m.setMonthItems(extractLineItems(itemsJson));
-        return m;
+        */
+        return new Database();
     }
 
+    /*
     // EFFECTS: recursively produces LineItem from jsonObject
     private LineItem extractLineItems(JSONObject jsonObject) {
         LineItem li = new LineItem(jsonObject.getString("name"), jsonObject.getInt("val"));
@@ -57,4 +63,5 @@ public class JsonReader {
         }
         return li;
     }
+     */
 }

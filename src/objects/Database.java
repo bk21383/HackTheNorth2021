@@ -1,5 +1,7 @@
 package objects;
 
+import org.json.JSONObject;
+
 import java.lang.reflect.Array;
 import java.util.Iterator;
 import java.util.List;
@@ -58,4 +60,7 @@ public class Database implements Iterable<Person> {
         people.sort(comparator);
     }
 
+    public JSONObject toJson() {
+        return new JSONObject();
+    }
 }

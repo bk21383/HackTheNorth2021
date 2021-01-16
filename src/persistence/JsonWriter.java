@@ -3,7 +3,7 @@ package persistence;
 // This is adapted from the demo:
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
-import containers.Month;
+import objects.Database;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -30,7 +30,7 @@ public class JsonWriter {
 
     // MODIFIES: this
     // EFFECTS: writes JSON representation of month to file
-    public void write(Month m) throws FileNotFoundException {
+    public void write(Database m) throws FileNotFoundException {
         open();
         JSONObject json = m.toJson();
         saveToFile(json.toString(TAB));
