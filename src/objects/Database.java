@@ -65,6 +65,7 @@ public class Database implements Iterable<Person> {
     }
 
     public JSONObject toJson() {
-        return new JSONObject();
+        JSONObject json = new JSONObject();
+        return json;
     }
 }
