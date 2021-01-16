@@ -32,11 +32,12 @@ public class Database implements Iterable<Person> {
 
     public Database findPeopleWIthTags(List<String> tags) {
         Database peopleWithTag = new Database();
+        boolean addedPerson = false;
         for(Person person : this) {
             for(String tag : tags) {
                 if(person.hasTag(tag)) {
                     peopleWithTag.addPerson(person);
-                    continue;
+                    break;
                 }
             }
         }
