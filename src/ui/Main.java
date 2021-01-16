@@ -1,7 +1,7 @@
 package ui;
-import objects.Test;
+import objects.*;
 
-public class Main() {}
+public class Main {
     public static void main() {
         System.out.println("Test");
     }
