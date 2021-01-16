@@ -69,4 +69,8 @@ public class Person {
     public int getId() {
         return id;
     }
+
+    public Map<String, String> getUsefulData() {
+        return usefulData;
+    }
 }

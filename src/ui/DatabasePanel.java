@@ -1,7 +1,12 @@
 package ui;
 
+import objects.Database;
+import objects.Person;
+import objects.PersonComparator;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,12 +18,17 @@ public class DatabasePanel extends JPanel {
     JPanel buttonsPanel;
     JPanel inputPanel;
 
-    public DatabasePanel() {
+    public DatabasePanel(Database db) {
         super();
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        setBackground(Color.GRAY);
+        setBackground(Color.WHITE);
         setPreferredSize(new Dimension(width, height));
 
+        List<Person> peopleList = db.getPeopleList();
+        peopleList.sort(new PersonComparator("name"));
+        loadData(peopleList);
+
+        /*
         buttonsMap = new HashMap<String, JButton>();
         buttonsPanel = new JPanel();
         buttonsPanel.setPreferredSize(new Dimension(width / 3, height));
@@ -29,7 +39,20 @@ public class DatabasePanel extends JPanel {
         inputPanel.setPreferredSize(new Dimension(2 * width / 3, height));
         createInputs();
         add(inputPanel);
+         */
 
+    }
+
+    public void loadData(List <Person> people) {
+        for(Person p : people) {
+            addPersonData(p);
+        }
+    }
+
+    public void addPersonData(Person p) {
+        SinglePersonDisplay personTextBox = new SinglePersonDisplay(p);
+        personTextBox.setVisible(true);
+        add(personTextBox);
     }
 
     private void createButtons() {

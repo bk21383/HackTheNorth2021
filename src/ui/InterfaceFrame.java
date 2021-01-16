@@ -1,5 +1,7 @@
 package ui;
 
+import objects.Database;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,14 +11,14 @@ public class InterfaceFrame extends JFrame {
     DatabasePanel dp;
 
     // generates frame, control panel, view panel. makes visible
-    public InterfaceFrame() {
+    public InterfaceFrame(Database db) {
         super("Frame");
         setBackground(Color.BLACK);
         setPreferredSize(new Dimension(800, 800));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pp = new PersonPanel();
         add(pp);
-        dp = new DatabasePanel();
+        dp = new DatabasePanel(db);
         add(dp);
 
         pack();
