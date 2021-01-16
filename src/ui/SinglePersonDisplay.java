@@ -12,6 +12,7 @@ public class SinglePersonDisplay extends JTextPane {
         person = p;
 
         String s = "";
+        s += p.getName() + "\n";
         for(String key : p.getUsefulData().keySet()) {
             s += key;
             s += ": ";

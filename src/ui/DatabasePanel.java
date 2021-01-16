@@ -17,12 +17,19 @@ public class DatabasePanel extends JPanel {
     Map<String, JButton> buttonsMap;
     JPanel buttonsPanel;
     JPanel inputPanel;
+    JScrollPane scrollPane;
+    JPanel listPeople;
 
     public DatabasePanel(Database db) {
         super();
-        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        setBackground(Color.WHITE);
+        setBackground(Color.GREEN);
         setPreferredSize(new Dimension(width, height));
+
+        scrollPane = new JScrollPane();
+        listPeople = new JPanel();
+        listPeople.setLayout(new BoxLayout(listPeople, BoxLayout.Y_AXIS));
+        add(scrollPane);
+        scrollPane.setViewportView(listPeople);
 
         List<Person> peopleList = db.getPeopleList();
         peopleList.sort(new PersonComparator("name"));
@@ -52,7 +59,7 @@ public class DatabasePanel extends JPanel {
     public void addPersonData(Person p) {
         SinglePersonDisplay personTextBox = new SinglePersonDisplay(p);
         personTextBox.setVisible(true);
-        add(personTextBox);
+        listPeople.add(personTextBox);
     }
 
     private void createButtons() {

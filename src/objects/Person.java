@@ -8,6 +8,7 @@ public class Person {
     Map <String, String> usefulData;
     Set <String> rawData;
     Set <String> tags;
+    String name;
     int id;
 
     // Constructors: construct maps for data, add initial data (name, birthday)
@@ -17,13 +18,12 @@ public class Person {
         rawData = new HashSet<>();
         tags = new HashSet<>();
 
-        usefulData.put("name", "null");
         usefulData.put("bd", "null");
     }
 
     public Person(String name) {
         this();
-        usefulData.put("name", name);
+        this.name = name;
     }
 
     public Person(String name, String birthday) {
@@ -72,5 +72,9 @@ public class Person {
 
     public Map<String, String> getUsefulData() {
         return usefulData;
+    }
+
+    public String getName() {
+        return name;
     }
 }
