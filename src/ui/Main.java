@@ -3,6 +3,7 @@ import objects.*;
 
 public class Main {
     static InterfaceFrame frame;
+    Database db;
 
     public static void main(String[] args) {
         frame = new InterfaceFrame();

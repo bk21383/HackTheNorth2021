@@ -3,28 +3,26 @@ package objects;
 import org.json.JSONObject;
 
 import java.lang.reflect.Array;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Database implements Iterable<Person> {
-    List<Person> people;
+    Map<Integer, Person> people;
     int lastId;
 
     public Database() {
-        people = new ArrayList<>();
+        people = new HashMap<Integer, Person>();
     }
 
     // adds a person and assigns them a unique ID
     public void addPerson(Person person) {
         lastId += 1;
         person.setId(lastId);
-        people.add(person);
+        people.put(lastId, person);
     }
 
     // requried for foreach loops
     public Iterator<Person> iterator() {
-        return people.iterator();
+        return people.values().iterator();
     }
 
     // produces a database of people with the given tag
@@ -53,11 +51,17 @@ public class Database implements Iterable<Person> {
         return peopleWithTag;
     }
 
+    public List <Person> getPeopleList() {
+        return new ArrayList<Person>(people.values());
+    }
+
     // Sorts list by given key
     // Afterwards: sorts by name and id
-    public void sortByData(String data) {
+    public List <Person> sortByData(String data) {
         PersonComparator comparator = new PersonComparator(data);
-        people.sort(comparator);
+        List <Person> personList = getPeopleList();
+        personList.sort(comparator);
+        return personList;
     }
 
     public JSONObject toJson() {
