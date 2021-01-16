@@ -6,7 +6,7 @@ public class PersonComparator implements Comparator <Person> {
     String comparisonData;
 
     public PersonComparator(String data) {
-
+        comparisonData = data;
     }
 
     // Sort by comparisonData, then name

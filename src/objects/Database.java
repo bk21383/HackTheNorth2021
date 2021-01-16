@@ -13,16 +13,19 @@ public class Database implements Iterable<Person> {
         people = new ArrayList<>();
     }
 
+    // adds a person and assigns them a unique ID
     public void addPerson(Person person) {
         lastId += 1;
         person.setId(lastId);
         people.add(person);
     }
 
+    // requried for foreach loops
     public Iterator<Person> iterator() {
         return people.iterator();
     }
 
+    // produces a database of people with the given tag
     public Database findPeopleWithTag(String tag) {
         Database peopleWithTag = new Database();
         for(Person person : this) {
@@ -33,7 +36,8 @@ public class Database implements Iterable<Person> {
         return peopleWithTag;
     }
 
-    public Database findPeopleWIthTags(List<String> tags) {
+    // produces database of people with the given tags. no person appears twice.
+    public Database findPeopleWithTags(List<String> tags) {
         Database peopleWithTag = new Database();
         boolean addedPerson = false;
         for(Person person : this) {
@@ -45,6 +49,13 @@ public class Database implements Iterable<Person> {
             }
         }
         return peopleWithTag;
+    }
+
+    // Sorts list by given key
+    // Afterwards: sorts by name and id
+    public void sortByData(String data) {
+        PersonComparator comparator = new PersonComparator(data);
+        people.sort(comparator);
     }
 
 }
