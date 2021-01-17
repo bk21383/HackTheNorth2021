@@ -113,8 +113,8 @@ public class Database implements Iterable<Person> {
             }
 
             // Store all associates for a person
-            for (String associateName : this.getPeopleList().get(i).getAssociates()) {
-                associates.put(associateName);
+            for (int associateId : this.getPeopleList().get(i).getAssociates()) {
+                associates.put(associateId);
             }
 
             person.put("Tags", tags);
@@ -150,7 +150,7 @@ public class Database implements Iterable<Person> {
 
     public static List<String> toList(String list) {
         List <String> realList;
-        realList = Arrays.asList(list.split(",| "));
+        realList = Arrays.asList(list.split("(, )|( )"));
         return realList;
     }
 

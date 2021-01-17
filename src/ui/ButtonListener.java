@@ -3,6 +3,7 @@ package ui;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 // calls method when button is pressed
 public class ButtonListener implements ActionListener  {
@@ -48,6 +49,19 @@ public class ButtonListener implements ActionListener  {
 
             else if(label.equals("Add Associate")) {
                 Main.addAssociate();
+            }
+
+            else if(label.equals("Read")) {
+                try {
+                    Main.read(1, 2021);
+                }
+                catch(IOException exception) {
+
+                }
+            }
+
+            else if(label.equals("Write")) {
+                Main.write(1, 2021);
             }
 
         }

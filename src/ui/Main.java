@@ -17,11 +17,9 @@ public class Main {
         originalDb = db;
         frame = new InterfaceFrame(db);
 
-        //Send JSON data to JSON file
-        optionWrite(1, 2021);
         //Read JSON data and save to db
         try {
-            readDatabase(1, 2021);
+            read(1, 2021);
         } catch (IOException e) {
             System.out.println("I/O errors with json file");
         }
@@ -41,13 +39,15 @@ public class Main {
         p2.addAssociate(p4);
     }
 
-    public static void readDatabase(int monthNum, int yearNum) throws IOException {
+    public static void read(int monthNum, int yearNum) throws IOException {
         String file = "./json_files/" + Integer.toString(yearNum) + Integer.toString(monthNum) + ".json";
         JsonReader rd = new JsonReader(file);
-        db = rd.read();
+        originalDb = rd.read();
+        db = originalDb;
+        redraw();
     }
 
-    public static void optionWrite(int monthNum, int yearNum) {
+    public static void write(int monthNum, int yearNum) {
         String file = "./json_files/" + Integer.toString(yearNum) + Integer.toString(monthNum) + ".json";
         JsonWriter wr = new JsonWriter(file);
         try {
@@ -55,10 +55,13 @@ public class Main {
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
+        redraw();
     }
 
     public static void setSelect(int id) {
+        System.out.println(originalDb.getPeopleList());
         Person selected = db.getPerson(id);
+        System.out.println(id);
         frame.pp.setSelect(selected);
         return;
     }

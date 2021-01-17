@@ -44,46 +44,25 @@ public class JsonReader {
     // returns Month from jsonObject
     private Database parseDatabase(JSONObject jsonObject) {
         Database newDB = new Database();
-        /*
-        int month = jsonObject.getInt("month");
-        int year = jsonObject.getInt("year");
-        Month m = new Month(month, year);
-        JSONObject itemsJson = jsonObject.getJSONObject("monthItems");
-        m.setMonthItems(extractLineItems(itemsJson));
-        */
-
-        for (int i = 1; i < jsonObject.length(); i++) {
+        for (int i = 1; i <= jsonObject.length(); i++) {
             JSONObject personJSON = jsonObject.getJSONObject(Integer.toString(i));
             JSONArray tags = personJSON.getJSONArray("Tags");
             JSONArray associates = personJSON.getJSONArray("Associates");
             Person person = new Person(personJSON.getString("Name"));
+            newDB.addPerson(person);
 
             for (int j = 0; j < tags.length(); j++) {
                 person.addTag(tags.getString(j));
             }
 
             for (int j = 0; j < associates.length(); j++) {
-                Person associate = new Person(associates.getString(j));
-                person.addAssociate(associate);
+                if(newDB.getPeople().containsKey(associates.getInt(j))) {
+                    person.addAssociate(newDB.getPerson(associates.getInt(j)));
+                }
             }
-
-            newDB.addPerson(person);
         }
 
         return newDB;
     }
 
-    /*
-    // EFFECTS: recursively produces LineItem from jsonObject
-    private LineItem extractLineItems(JSONObject jsonObject) {
-        LineItem li = new LineItem(jsonObject.getString("name"), jsonObject.getInt("val"));
-        JSONArray jsonArray = jsonObject.getJSONArray("subItems");
-        for (Object json : jsonArray) {
-            JSONObject jsonItem = (JSONObject) json;
-            LineItem newItem = extractLineItems(jsonItem);
-            li.addItem(newItem);
-        }
-        return li;
-    }
-     */
 }

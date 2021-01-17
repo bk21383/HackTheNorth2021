@@ -1,24 +1,24 @@
 {
     "1": {
-        "Associates": ["Jennifer Grinberg"],
+        "Associates": [3],
         "Birthday": "null",
         "Tags": [],
         "Name": "William Chu"
     },
     "2": {
-        "Associates": [],
+        "Associates": [4],
         "Birthday": "null",
         "Tags": [],
         "Name": "Amy Wang"
     },
     "3": {
-        "Associates": ["William Chu"],
+        "Associates": [1],
         "Birthday": "null",
         "Tags": [],
         "Name": "Jennifer Grinberg"
     },
     "4": {
-        "Associates": [],
+        "Associates": [2],
         "Birthday": "null",
         "Tags": [],
         "Name": "Emily Branch"
