@@ -37,7 +37,7 @@ public class Database implements Iterable<Person> {
     }
 
     // produces database of people with the given tags. no person appears twice.
-    public Database findPeopleWithTags(List<String> tags) {
+    public Database findPeopleWithTagsOr(List<String> tags) {
         Database peopleWithTag = new Database();
         boolean addedPerson = false;
         for(Person person : this) {
@@ -51,7 +51,25 @@ public class Database implements Iterable<Person> {
         return peopleWithTag;
     }
 
-    public List <Person> getPeopleList() {
+    public Database findPeopleWithTagsAnd(List<String> tags) {
+        Database peopleWithTag = new Database();
+        boolean missingTag = false;
+        for(Person person : this) {
+            missingTag = false;
+            for(String tag : tags) {
+                if(person.hasTag(tag)) {
+                    missingTag = true;
+                    break;
+                }
+            }
+            if(!missingTag) {
+                peopleWithTag.addPerson(person);
+            }
+        }
+        return peopleWithTag;
+    }
+
+    public ArrayList <Person> getPeopleList() {
         return new ArrayList<Person>(people.values());
     }
 
@@ -71,5 +89,31 @@ public class Database implements Iterable<Person> {
 
     public Person getPerson(int id) {
         return people.get(id);
+    }
+
+    public void reduceTags(List <String> tags, String newTag, boolean inclusive) {
+        Database people;
+        if(inclusive) {
+            people = findPeopleWithTagsOr(tags);
+        }
+        else {
+            people = findPeopleWithTagsAnd(tags);
+        }
+        for(Person p : people) {
+            for(String tag : tags) {
+                p.removeTag(tag);
+            }
+            p.addTag(newTag);
+        }
+    }
+
+    public static List<String> toList(String list) {
+        List <String> realList;
+        realList = Arrays.asList(list.split(",| "));
+        return realList;
+    }
+
+
+    public void removePerson(Person p) {
     }
 }

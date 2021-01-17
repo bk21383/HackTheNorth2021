@@ -40,7 +40,11 @@ public class InterfaceFrame extends JFrame {
         setLocation((scrn.width - getWidth()) / 2, (scrn.height - getHeight()) / 2);
     }
 
-    // EFFECTS: refreshes vp
-    public void refreshDisplay() {
+    public void refreshDisplay(Database db) {
+        dp.redraw(db.getPeopleList());
+        pp.displaySelectedPerson();
+        invalidate();
+        validate();
+        repaint();
     }
 }

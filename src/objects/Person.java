@@ -64,10 +64,6 @@ public class Person {
         return tags.contains(tag);
     }
     
-    public void removeTag(String tag) {
-        tags.remove(tag);
-    }
-
     public boolean hasData(String data) {
         return usefulData.containsKey(data);
     }
@@ -86,5 +82,11 @@ public class Person {
 
     public Set<String> getTags() {
         return tags;
+    }
+
+    public void removeTag(String tag) {
+        if(hasTag(tag)) {
+            tags.remove(tag);
+        }
     }
 }

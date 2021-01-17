@@ -24,7 +24,6 @@ public class DatabasePanel extends JPanel {
         super();
         setBackground(Color.GREEN);
         setPreferredSize(new Dimension(width, height));
-        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
         scrollPane = new JScrollPane();
         listPeople = new JPanel();
@@ -38,6 +37,9 @@ public class DatabasePanel extends JPanel {
 
     }
 
+    public void clear() {
+        listPeople.removeAll();
+    }
     public void loadData(List <Person> people) {
         for(Person p : people) {
             addPersonData(p);
@@ -51,5 +53,9 @@ public class DatabasePanel extends JPanel {
     }
 
 
-
+    public void redraw(List<Person> people) {
+        System.out.println("Test");
+        clear();
+        loadData(people);
+    }
 }

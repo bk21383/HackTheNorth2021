@@ -13,6 +13,7 @@ import java.io.IOException;
 public class Main {
     static InterfaceFrame frame;
     static Database db;
+    static Database originalDb;
 
     public static void main(String[] args) {
         generateTestData();
@@ -82,21 +83,39 @@ public class Main {
 
     public static void addPerson() {
         String name = frame.cp.newPersonName.getText();
+        System.out.println(name);
+        db.addPerson(new Person(name));
+        redraw();
     }
 
     public static void addTags() {
-//        PersonPanel.addTags();
+        frame.pp.addTags(Database.toList(frame.cp.tagsToAdd.getText()));
+        redraw();
     }
 
     public static void deletePerson() {
+        db.removePerson(frame.pp.selected);
+        frame.pp.selected = new Person();
+        redraw();
     }
 
     public static void search() {
+        originalDb = db;
+        db = originalDb.findPeopleWithTagsOr(Database.toList(frame.cp.tagToSearch.getText()));
+        redraw();
     }
 
     public static void replaceIfAny() {
+        db.reduceTags(Database.toList(frame.cp.tagsToReduce.getText()), frame.cp.replacementTag.getText(), true);
+        redraw();
     }
 
     public static void replaceIfAll() {
+        db.reduceTags(Database.toList(frame.cp.tagsToReduce.getText()), frame.cp.replacementTag.getText(), false);
+        redraw();
+    }
+
+    public static void redraw() {
+        frame.refreshDisplay(db);
     }
 }
