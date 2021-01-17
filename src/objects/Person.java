@@ -8,7 +8,7 @@ public class Person {
     Map <String, String> usefulData;
     Set <String> rawData;
     Set <String> tags;
-    Set <String> associates;
+    Set <Integer> associates;
     String name;
     int id;
 
@@ -21,8 +21,6 @@ public class Person {
         associates = new HashSet<>();
 
         usefulData.put("bd", "null");
-
-        tags.add("manly");
     }
 
     public Person(String name) {
@@ -93,15 +91,15 @@ public class Person {
     }
 
     public void addAssociate(Person newAssociate) {
-        associates.add(newAssociate.getName());
-        newAssociate.getAssociates().add(name);
+        associates.add(newAssociate.getId());
+        newAssociate.getAssociates().add(this.getId());
     }
 
-    public void removeAssociate(String name) {
-        associates.remove(name);
+    public void removeAssociate(int id) {
+        associates.remove(id);
     }
 
-    public Set<String> getAssociates() {
+    public Set<Integer> getAssociates() {
         return associates;
     }
 }
