@@ -4,6 +4,8 @@ import objects.Person;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 public class PersonPanel extends JPanel {
     int width = 800;
@@ -19,6 +21,8 @@ public class PersonPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setPreferredSize(new Dimension(width, height));
         setBackground(new Color(45, 109, 45));
+
+        selected = new Person();
 
         scrollPane = new JScrollPane();
         viewPanel = new JTextArea();
@@ -49,5 +53,11 @@ public class PersonPanel extends JPanel {
         s += "Associates: \n";
 
         viewPanel.setText(s);
+    }
+
+    public void addTags(List<String> tags) {
+        for(String tag : tags) {
+            selected.addTag(tag);
+        }
     }
 }
