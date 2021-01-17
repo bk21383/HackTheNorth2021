@@ -63,11 +63,7 @@ public class Person {
     public boolean hasTag(String tag) {
         return tags.contains(tag);
     }
-
-    public Set<String> getTags() {
-        return tags;
-    }
-
+    
     public void removeTag(String tag) {
         tags.remove(tag);
     }
