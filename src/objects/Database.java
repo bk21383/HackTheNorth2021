@@ -1,6 +1,7 @@
 package objects;
 
 import org.json.JSONObject;
+import org.json.JSONArray;
 
 import java.lang.reflect.Array;
 import java.util.*;
@@ -65,8 +66,31 @@ public class Database implements Iterable<Person> {
     }
 
     public JSONObject toJson() {
-        JSONObject json = new JSONObject();
-        return json;
+        JSONObject jsonObj = new JSONObject();
+
+        for (int i = 0; i < this.getPeopleList().size(); i++) {
+            JSONObject person = new JSONObject();
+            JSONArray tags = new JSONArray();
+            String id = String.valueOf(this.getPeopleList().get(i).getId());
+            String name = this.getPeopleList().get(i).getName();
+            String bday = this.getPeopleList().get(i).getUsefulData().get("bd");
+
+            person.put("Name", name);
+            person.put("Birthday", bday);
+
+            // Store all tags for a person
+            for (String tag : this.getPeopleList().get(i).getTags()) {
+                tags.put(tag);
+            }
+
+            person.put("Tags", tags);
+            jsonObj.put(id, person);
+        }
+
+        //Output JSON data
+        System.out.println(jsonObj.toString(2));
+
+        return jsonObj;
     }
 
     public Person getPerson(int id) {

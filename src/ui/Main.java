@@ -18,29 +18,8 @@ public class Main {
         generateTestData();
         frame = new InterfaceFrame(db);
 
-        JSONObject jsonObj = new JSONObject();
-
-        for (int i = 0; i < db.getPeopleList().size(); i++) {
-            JSONObject person = new JSONObject();
-            JSONArray tags = new JSONArray();
-            String id = String.valueOf(db.getPeopleList().get(i).getId());
-            String name = db.getPeopleList().get(i).getName();
-            String bday = db.getPeopleList().get(i).getUsefulData().get("bd");
-
-            person.put("Name", name);
-            person.put("Birthday", bday);
-
-            // Store all tags for a person
-            for (String tag : db.getPeopleList().get(i).getTags()) {
-                tags.put(tag);
-            }
-
-            person.put("Tags", tags);
-            jsonObj.put(id, person);
-        }
-
-        //Output JSON data
-        System.out.println(jsonObj.toString(2));
+        //Send JSON data to JSON file
+        optionWrite(1, 2021);
     }
 
     public static void generateTestData() {
@@ -61,17 +40,14 @@ public class Main {
         db = rd.read();
     }
 
-    public static void optionWrite() {
-        /*
-        String file = "./data/" + Integer.toString(month.getYear())
-                + Integer.toString(month.getMonth()) + ".json";
+    public static void optionWrite(int monthNum, int yearNum) {
+        String file = "./json_files/" + Integer.toString(monthNum) + Integer.toString(yearNum) + ".json";
         JsonWriter wr = new JsonWriter(file);
         try {
-            wr.write(month);
+            wr.write(db);
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
-         */
     }
 
     public static void setSelect(int id) {
