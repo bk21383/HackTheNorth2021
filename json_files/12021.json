@@ -1,22 +1,22 @@
 {
     "1": {
         "Birthday": "null",
-        "Tags": ["manly"],
+        "Tags": [],
         "Name": "William Chu"
     },
     "2": {
         "Birthday": "null",
-        "Tags": ["manly"],
+        "Tags": [],
         "Name": "Amy Wang"
     },
     "3": {
         "Birthday": "null",
-        "Tags": ["manly"],
+        "Tags": [],
         "Name": "Jennifer Grinberg"
     },
     "4": {
         "Birthday": "null",
-        "Tags": ["manly"],
+        "Tags": [],
         "Name": "Emily Branch"
     }
 }

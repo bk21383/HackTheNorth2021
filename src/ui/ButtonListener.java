@@ -26,8 +26,12 @@ public class ButtonListener implements ActionListener  {
                 Main.deletePerson();
             }
 
-            else if(label.equals("Search")) {
-                Main.search();
+            else if(label.equals("Inclusive Search")) {
+                Main.search(true);
+            }
+
+            else if(label.equals("Exclusive Search")) {
+                Main.search(false);
             }
 
             else if(label.equals("Replace if any")) {
@@ -36,6 +40,14 @@ public class ButtonListener implements ActionListener  {
 
             else if(label.equals("Replace if all")) {
                 Main.replaceIfAll();
+            }
+
+            else if(label.equals("Reset Search")) {
+                Main.resetSearch();
+            }
+
+            else if(label.equals("Add Associate")) {
+                Main.addAssociate();
             }
 
         }

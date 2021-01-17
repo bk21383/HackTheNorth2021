@@ -54,7 +54,6 @@ public class DatabasePanel extends JPanel {
 
 
     public void redraw(List<Person> people) {
-        System.out.println("Test");
         clear();
         loadData(people);
     }

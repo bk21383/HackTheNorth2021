@@ -46,13 +46,13 @@ public class PersonPanel extends JPanel {
         s += "\n";
         s += "Tags: \n";
         for(String tag : selected.getTags()) {
-            s += tag + "\n";
+            s += "\t" + tag + "\n";
         }
 
         s += "\n";
         s += "Associates: \n";
-        for (String associate : selected.getAssociates()) {
-            s += associate;
+        for (Integer associateId : selected.getAssociates()) {
+            s += "\t" + Main.originalDb.getPerson(associateId).getName() + "\n";
         }
 
         viewPanel.setText(s);

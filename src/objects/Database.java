@@ -16,9 +16,14 @@ public class Database implements Iterable<Person> {
 
     // adds a person and assigns them a unique ID
     public void addPerson(Person person) {
-        lastId += 1;
-        person.setId(lastId);
-        people.put(lastId, person);
+        if(person.getId() == 0) {
+            lastId += 1;
+            person.setId(lastId);
+            people.put(lastId, person);
+        }
+        else {
+            people.put(person.getId(), person);
+        }
     }
 
     // requried for foreach loops
@@ -58,7 +63,7 @@ public class Database implements Iterable<Person> {
         for(Person person : this) {
             missingTag = false;
             for(String tag : tags) {
-                if(person.hasTag(tag)) {
+                if(!person.hasTag(tag)) {
                     missingTag = true;
                     break;
                 }
@@ -140,10 +145,8 @@ public class Database implements Iterable<Person> {
 
     public void removePerson(Person p) {
         // Remove person from all associate lists
-        while (iterator().hasNext()) {
-            if (iterator().next().getAssociates().contains(p.name)) {
-                iterator().next().getAssociates().remove(p.name);
-            }
+        for(int id : p.getAssociates()) {
+            people.get(id).removeAssociate(p.getId());
         }
 
         // Remove person from db

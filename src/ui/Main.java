@@ -1,11 +1,8 @@
 package ui;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import persistence.JsonWriter;
 
 import objects.*;
 import persistence.JsonReader;
-import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -17,6 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         generateTestData();
+        originalDb = db;
         frame = new InterfaceFrame(db);
 
         //Send JSON data to JSON file
@@ -33,7 +31,7 @@ public class Main {
         db.addPerson(p2);
         db.addPerson(p3);
         db.addPerson(p4);
-        p1.addAssociate("Jennifer Grinberg");
+        p2.addAssociate(p4);
     }
 
     public static void readDatabase(int monthNum, int yearNum) throws IOException {
@@ -76,9 +74,13 @@ public class Main {
         redraw();
     }
 
-    public static void search() {
-        originalDb = db;
-        db = originalDb.findPeopleWithTagsOr(Database.toList(frame.cp.tagToSearch.getText()));
+    public static void search(boolean inclusive) {
+        if(inclusive) {
+            db = originalDb.findPeopleWithTagsOr(Database.toList(frame.cp.tagToSearch.getText()));
+        }
+        else {
+            db = originalDb.findPeopleWithTagsAnd(Database.toList(frame.cp.tagToSearch.getText()));
+        }
         redraw();
     }
 
@@ -92,7 +94,17 @@ public class Main {
         redraw();
     }
 
+    public static void resetSearch() {
+        db = originalDb;
+        redraw();
+    }
+
     public static void redraw() {
         frame.refreshDisplay(db);
+    }
+
+    public static void addAssociate() {
+        frame.pp.selected.addAssociate(db.getPerson(Integer.valueOf(frame.cp.newAssociate.getText())));
+        redraw();
     }
 }
