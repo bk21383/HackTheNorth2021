@@ -1,4 +1,5 @@
 package ui;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.JsonWriter;
 
@@ -21,12 +22,20 @@ public class Main {
 
         for (int i = 0; i < db.getPeopleList().size(); i++) {
             JSONObject person = new JSONObject();
+            JSONArray tags = new JSONArray();
             String id = String.valueOf(db.getPeopleList().get(i).getId());
             String name = db.getPeopleList().get(i).getName();
             String bday = db.getPeopleList().get(i).getUsefulData().get("bd");
-            
+
             person.put("Name", name);
             person.put("Birthday", bday);
+
+            // Store all tags for a person
+            for (String tag : db.getPeopleList().get(i).getTags()) {
+                tags.put(tag);
+            }
+
+            person.put("Tags", tags);
             jsonObj.put(id, person);
         }
 

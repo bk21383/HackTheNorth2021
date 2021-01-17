@@ -19,6 +19,8 @@ public class Person {
         tags = new HashSet<>();
 
         usefulData.put("bd", "null");
+
+        tags.add("manly");
     }
 
     public Person(String name) {
@@ -60,6 +62,14 @@ public class Person {
 
     public boolean hasTag(String tag) {
         return tags.contains(tag);
+    }
+
+    public Set<String> getTags() {
+        return tags;
+    }
+
+    public void removeTag(String tag) {
+        tags.remove(tag);
     }
 
     public boolean hasData(String data) {
