@@ -9,16 +9,11 @@ public class SinglePersonDisplay extends JTextPane {
 
     public SinglePersonDisplay(Person p){
         super();
+        addMouseListener(new ClickSelector());
         person = p;
 
         String s = "";
-        s += p.getName() + "\n";
-        for(String key : p.getUsefulData().keySet()) {
-            s += key;
-            s += ": ";
-            s += p.getUsefulData().get(key);
-            s += "\n";
-        }
+        s += Integer.toString(p.getId()) + ": " + p.getName();
         setText(s);
     }
     int getId() {

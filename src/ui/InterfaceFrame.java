@@ -5,10 +5,13 @@ import objects.Database;
 import javax.swing.*;
 import java.awt.*;
 
+import static javax.swing.BoxLayout.X_AXIS;
+
 // frame for components
 public class InterfaceFrame extends JFrame {
     PersonPanel pp;
     DatabasePanel dp;
+    ControlPanel cp;
 
     // generates frame, control panel, view panel. makes visible
     public InterfaceFrame(Database db) {
@@ -16,10 +19,13 @@ public class InterfaceFrame extends JFrame {
         setBackground(Color.BLACK);
         setPreferredSize(new Dimension(800, 800));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pp = new PersonPanel();
-        add(pp);
+        setLayout(new GridLayout(1, 2));
         dp = new DatabasePanel(db);
         add(dp);
+        cp = new ControlPanel();
+        add(cp);
+        pp = new PersonPanel();
+        add(pp);
 
         pack();
         centreOnScreen();

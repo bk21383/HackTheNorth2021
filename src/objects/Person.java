@@ -87,4 +87,8 @@ public class Person {
     public String getName() {
         return name;
     }
+
+    public Set<String> getTags() {
+        return tags;
+    }
 }
