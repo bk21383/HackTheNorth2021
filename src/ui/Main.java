@@ -33,6 +33,7 @@ public class Main {
         db.addPerson(p2);
         db.addPerson(p3);
         db.addPerson(p4);
+        p1.addAssociate("Jennifer Grinberg");
     }
 
     public static void readDatabase(int monthNum, int yearNum) throws IOException {

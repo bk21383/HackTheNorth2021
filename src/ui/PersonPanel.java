@@ -51,6 +51,9 @@ public class PersonPanel extends JPanel {
 
         s += "\n";
         s += "Associates: \n";
+        for (String associate : selected.getAssociates()) {
+            s += associate;
+        }
 
         viewPanel.setText(s);
     }

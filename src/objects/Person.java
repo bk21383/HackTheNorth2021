@@ -8,6 +8,7 @@ public class Person {
     Map <String, String> usefulData;
     Set <String> rawData;
     Set <String> tags;
+    Set <String> associates;
     String name;
     int id;
 
@@ -17,6 +18,7 @@ public class Person {
         usefulData = new HashMap<>();
         rawData = new HashSet<>();
         tags = new HashSet<>();
+        associates = new HashSet<>();
 
         usefulData.put("bd", "null");
 
@@ -63,7 +65,7 @@ public class Person {
     public boolean hasTag(String tag) {
         return tags.contains(tag);
     }
-    
+
     public boolean hasData(String data) {
         return usefulData.containsKey(data);
     }
@@ -88,5 +90,18 @@ public class Person {
         if(hasTag(tag)) {
             tags.remove(tag);
         }
+    }
+
+    public void addAssociate(Person newAssociate) {
+        associates.add(newAssociate.getName());
+        newAssociate.getAssociates().add(name);
+    }
+
+    public void removeAssociate(String name) {
+        associates.remove(name);
+    }
+
+    public Set<String> getAssociates() {
+        return associates;
     }
 }

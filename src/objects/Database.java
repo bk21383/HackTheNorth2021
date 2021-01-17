@@ -139,5 +139,14 @@ public class Database implements Iterable<Person> {
 
 
     public void removePerson(Person p) {
+        // Remove person from all associate lists
+        while (iterator().hasNext()) {
+            if (iterator().next().getAssociates().contains(p.name)) {
+                iterator().next().getAssociates().remove(p.name);
+            }
+        }
+
+        // Remove person from db
+        people.remove(p.id, p);
     }
 }
