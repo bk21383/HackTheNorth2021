@@ -68,4 +68,8 @@ public class Database implements Iterable<Person> {
         JSONObject json = new JSONObject();
         return json;
     }
+
+    public Person getPerson(int id) {
+        return people.get(id);
+    }
 }

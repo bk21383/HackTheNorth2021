@@ -5,6 +5,8 @@ import objects.Database;
 import javax.swing.*;
 import java.awt.*;
 
+import static javax.swing.BoxLayout.X_AXIS;
+
 // frame for components
 public class InterfaceFrame extends JFrame {
     PersonPanel pp;
@@ -16,10 +18,11 @@ public class InterfaceFrame extends JFrame {
         setBackground(Color.BLACK);
         setPreferredSize(new Dimension(800, 800));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pp = new PersonPanel();
-        add(pp);
+        setLayout(new GridLayout(1, 2));
         dp = new DatabasePanel(db);
         add(dp);
+        pp = new PersonPanel();
+        add(pp);
 
         pack();
         centreOnScreen();

@@ -24,10 +24,11 @@ public class DatabasePanel extends JPanel {
         super();
         setBackground(Color.GREEN);
         setPreferredSize(new Dimension(width, height));
+        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
         scrollPane = new JScrollPane();
         listPeople = new JPanel();
-        listPeople.setLayout(new BoxLayout(listPeople, BoxLayout.Y_AXIS));
+        listPeople.setLayout(new FlowLayout());
         add(scrollPane);
         scrollPane.setViewportView(listPeople);
 

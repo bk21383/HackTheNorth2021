@@ -66,6 +66,8 @@ public class Main {
     }
 
     public static void setSelect(int id) {
+        Person selected = db.getPerson(id);
+        frame.pp.setSelect(selected);
         return;
     }
 }
