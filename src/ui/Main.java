@@ -21,6 +21,12 @@ public class Main {
 
         //Send JSON data to JSON file
         optionWrite(1, 2021);
+        //Read JSON data and save to db
+        try {
+            readDatabase(1, 2021);
+        } catch (IOException e) {
+            System.out.println("I/O errors with json file");
+        }
     }
 
     public static void generateTestData() {
@@ -33,17 +39,17 @@ public class Main {
         db.addPerson(p2);
         db.addPerson(p3);
         db.addPerson(p4);
-        p1.addAssociate("Jennifer Grinberg");
+        p1.addAssociate(p3);
     }
 
     public static void readDatabase(int monthNum, int yearNum) throws IOException {
-        String file = "./data/" + Integer.toString(yearNum) + Integer.toString(monthNum) + ".json";
+        String file = "./json_files/" + Integer.toString(yearNum) + Integer.toString(monthNum) + ".json";
         JsonReader rd = new JsonReader(file);
         db = rd.read();
     }
 
     public static void optionWrite(int monthNum, int yearNum) {
-        String file = "./json_files/" + Integer.toString(monthNum) + Integer.toString(yearNum) + ".json";
+        String file = "./json_files/" + Integer.toString(yearNum) + Integer.toString(monthNum) + ".json";
         JsonWriter wr = new JsonWriter(file);
         try {
             wr.write(db);

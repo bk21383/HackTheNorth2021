@@ -1,20 +1,24 @@
 {
     "1": {
+        "Associates": ["Jennifer Grinberg"],
         "Birthday": "null",
         "Tags": ["manly"],
         "Name": "William Chu"
     },
     "2": {
+        "Associates": [],
         "Birthday": "null",
         "Tags": ["manly"],
         "Name": "Amy Wang"
     },
     "3": {
+        "Associates": ["William Chu"],
         "Birthday": "null",
         "Tags": ["manly"],
         "Name": "Jennifer Grinberg"
     },
     "4": {
+        "Associates": [],
         "Birthday": "null",
         "Tags": ["manly"],
         "Name": "Emily Branch"

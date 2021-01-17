@@ -4,6 +4,9 @@ package persistence;
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
 import objects.Database;
+import objects.Person;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -40,6 +43,7 @@ public class JsonReader {
 
     // returns Month from jsonObject
     private Database parseDatabase(JSONObject jsonObject) {
+        Database newDB = new Database();
         /*
         int month = jsonObject.getInt("month");
         int year = jsonObject.getInt("year");
@@ -47,7 +51,26 @@ public class JsonReader {
         JSONObject itemsJson = jsonObject.getJSONObject("monthItems");
         m.setMonthItems(extractLineItems(itemsJson));
         */
-        return new Database();
+
+        for (int i = 1; i < jsonObject.length(); i++) {
+            JSONObject personJSON = jsonObject.getJSONObject(Integer.toString(i));
+            JSONArray tags = personJSON.getJSONArray("Tags");
+            JSONArray associates = personJSON.getJSONArray("Associates");
+            Person person = new Person(personJSON.getString("Name"));
+
+            for (int j = 0; j < tags.length(); j++) {
+                person.addTag(tags.getString(j));
+            }
+
+            for (int j = 0; j < associates.length(); j++) {
+                Person associate = new Person(associates.getString(j));
+                person.addAssociate(associate);
+            }
+
+            newDB.addPerson(person);
+        }
+
+        return newDB;
     }
 
     /*

@@ -70,6 +70,10 @@ public class Database implements Iterable<Person> {
         return peopleWithTag;
     }
 
+    public Map<Integer, Person> getPeople() {
+        return people;
+    }
+
     public ArrayList <Person> getPeopleList() {
         return new ArrayList<Person>(people.values());
     }
@@ -89,6 +93,8 @@ public class Database implements Iterable<Person> {
         for (int i = 0; i < this.getPeopleList().size(); i++) {
             JSONObject person = new JSONObject();
             JSONArray tags = new JSONArray();
+            JSONArray associates = new JSONArray();
+
             String id = String.valueOf(this.getPeopleList().get(i).getId());
             String name = this.getPeopleList().get(i).getName();
             String bday = this.getPeopleList().get(i).getUsefulData().get("bd");
@@ -101,7 +107,13 @@ public class Database implements Iterable<Person> {
                 tags.put(tag);
             }
 
+            // Store all associates for a person
+            for (String associateName : this.getPeopleList().get(i).getAssociates()) {
+                associates.put(associateName);
+            }
+
             person.put("Tags", tags);
+            person.put("Associates", associates);
             jsonObj.put(id, person);
         }
 
