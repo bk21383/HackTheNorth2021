@@ -70,4 +70,24 @@ public class Main {
         frame.pp.setSelect(selected);
         return;
     }
+
+    public static void addPerson() {
+        String name = frame.cp.newPersonName.getText();
+    }
+
+    public static void addTags() {
+//        PersonPanel.addTags();
+    }
+
+    public static void deletePerson() {
+    }
+
+    public static void search() {
+    }
+
+    public static void replaceIfAny() {
+    }
+
+    public static void replaceIfAll() {
+    }
 }

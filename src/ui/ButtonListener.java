@@ -13,7 +13,31 @@ public class ButtonListener implements ActionListener  {
         Object source = e.getSource();
         if (source instanceof JButton) {
             JButton but = (JButton) source;
-            // TODO: COMPLETE
+            String label = but.getText();
+            if(label.equals("Add Person")) {
+                Main.addPerson();
+            }
+
+            else if(label.equals("Add tag(s)")) {
+                Main.addTags();
+            }
+
+            else if(label.equals("Delete person")) {
+                Main.deletePerson();
+            }
+
+            else if(label.equals("Search")) {
+                Main.search();
+            }
+
+            else if(label.equals("Replace if any")) {
+                Main.replaceIfAny();
+            }
+
+            else if(label.equals("Replace if all")) {
+                Main.replaceIfAll();
+            }
+
         }
     }
 }

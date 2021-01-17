@@ -19,7 +19,7 @@ public class ControlPanel extends JPanel {
     JPanel reducePanel;
 
     InputTextBox newPersonName;
-    InputTextBox idToDelete;
+    InputTextBox tagsToAdd;
     InputTextBox tagToSearch;
 
     InputTextBox tagsToReduce;
@@ -49,6 +49,14 @@ public class ControlPanel extends JPanel {
         newPersonControlPanel.add(newPersonName);
         newPersonControlPanel.setLayout(new GridLayout(2, 1));
         newPersonControlPanel.add(generateButton("Add Person"));
+
+        tagsToAdd = new InputTextBox("Tag(s) to add to current person: ", 30);
+        personControlPanel.setLayout(new GridLayout(3, 1));
+        personControlPanel.add(tagsToAdd);
+        personControlPanel.add(generateButton("Add tag(s)"));
+        personControlPanel.add(generateButton("Delete person"));
+
+
 
         tagToSearch = new InputTextBox("Search tag(s): ", 30);
         searchPanel.add(tagToSearch);
