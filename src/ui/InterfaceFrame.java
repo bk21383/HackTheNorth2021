@@ -11,6 +11,7 @@ import static javax.swing.BoxLayout.X_AXIS;
 public class InterfaceFrame extends JFrame {
     PersonPanel pp;
     DatabasePanel dp;
+    ControlPanel cp;
 
     // generates frame, control panel, view panel. makes visible
     public InterfaceFrame(Database db) {
@@ -21,6 +22,8 @@ public class InterfaceFrame extends JFrame {
         setLayout(new GridLayout(1, 2));
         dp = new DatabasePanel(db);
         add(dp);
+        cp = new ControlPanel();
+        add(cp);
         pp = new PersonPanel();
         add(pp);
 
